@@ -15,5 +15,6 @@ import RaceResult from '../components/layout/RaceResult.vue'
 <style scoped lang="scss">
 .race-course {
   @include flex-between;
+  margin-top: 32px;
 }
 </style>

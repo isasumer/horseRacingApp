@@ -9,9 +9,9 @@
 </template>
 <script setup lang="ts">
 import { BaseButton } from '../ui'
-
+import store from '@/store'
 const handleGenerateProgram = () => {
-  console.log('Generate Program')
+  store.dispatch('raceCourse/generateHorseList')
 }
 
 const handleStartStop = () => {
