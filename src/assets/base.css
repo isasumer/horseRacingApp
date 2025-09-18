@@ -5,6 +5,8 @@
   --vt-c-white-mute: #f2f2f2;
 
   --vt-c-black: #181818;
+  --vt-c-gray: #808080;
+  --vt-c-gray-soft: #80808092;
   --vt-c-black-soft: #222222;
   --vt-c-black-mute: #282828;
 
@@ -38,8 +40,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: var(--vt-c-black);
-    --color-background-soft: var(--vt-c-black-soft);
+    --color-background: var(--vt-c-gray);
+    --color-background-soft: var(--vt-c-gray-soft);
     --color-background-mute: var(--vt-c-black-mute);
 
     --color-border: var(--vt-c-divider-dark-2);
