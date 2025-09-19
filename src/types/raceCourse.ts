@@ -1,34 +1,21 @@
 export interface IHorse {
-  id: string
+  id: number
   name: string
   color: string
-  condition?: number
+  condition: number
+  speed: number
+}
+
+export interface IProgram {
+  lap: number
+  positionList: string[]
+}
+
+export interface IRaceCourseSchedule {
+  program: IProgram
+  result?: IProgram
 }
 
 
-export interface IRaceCourseProgram {
-  _id: string
-  program: [
-    {
-      lap: number;
-      positionList: [
-        {
-          position: number
-          horse: IHorse
-        }
-      ]
-    }
-  ]
-  result: [
-    {
-      lap: number
-      positionList: IPositionList[]
-    }
-  ]
-}
 
-export interface IPositionList {
-  position: number
-  horse: IHorse
-}
-
+export type Dictionary<T> = Record<string, T>

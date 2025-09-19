@@ -37,6 +37,7 @@ export default {
 .base-button--md {
   padding: 8px 16px;
   font-size: 14px;
+  min-width: 80px;
 }
 .base-button--lg {
   padding: 12px 20px;

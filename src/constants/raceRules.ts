@@ -13,7 +13,7 @@ export const HORSE_LIST = [
   "Irmak Su",
   "Canyurt",
   "Kop Gel",
-  "Canyurt",
+  "Kara Kız",
   "Can Can",
   "RockStar",
   "Tepeli",

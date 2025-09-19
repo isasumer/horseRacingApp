@@ -12,4 +12,7 @@ const app = createApp(App)
 app.use(store)
 app.use(router)
 
+// Initialize state before mounting the app
+store.dispatch('raceCourse/generateHorseList')
+
 app.mount('#app')
