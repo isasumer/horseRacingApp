@@ -16,5 +16,6 @@ import RaceProgramAndResult from '../components/layout/RaceProgramAndResult.vue'
 .race-course {
   @include flex-between;
   margin-top: 24px;
+  gap: 36px;
 }
 </style>
