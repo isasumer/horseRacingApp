@@ -1,4 +1,3 @@
-import { generateHorses } from '@/utils/generateHorses';
 import type { IHorse, IProgram, IRaceCourseState, RaceStatus } from '../../types/raceCourse';
 import { RaceStatusMap } from '../../types/raceCourse';
 import { HorseRacingHelper } from '../../utils/horseRacingHelper';
@@ -37,7 +36,7 @@ const mutations = {
     state.currentLap = currentLap;
   },
   resetGame(state: IRaceCourseState) {
-    state.horseList = generateHorses();
+    state.horseList = [];
     state.isRunning = false;
     state.raceStatus = RaceStatusMap.Initial as RaceStatus;
     state.currentLap = 0;
@@ -52,8 +51,26 @@ const actions = {
     const horseList = HorseRacingHelper.generateHorses()
     commit('setHorseList', horseList)
   },
+  generateRaceProgram() {
+    HorseRacingHelper.generateRaceProgram()
+  },
+  startRace() {
+    HorseRacingHelper.startFullRaceSequence()
+  },
+  pauseRace() {
+    HorseRacingHelper.pauseFullRaceSequence()
+  },
+  resumeRace() {
+    HorseRacingHelper.resumeFullRaceSequence()
+  },
+  stopRace() {
+    HorseRacingHelper.stopFullRaceSequence()
+  },
+  finishRace() {
+    HorseRacingHelper.finishRace()
+  },
   setCurrentLap({ commit }: { commit: (mutation: string, payload: number) => void }, currentLap: number) {
-    commit('setCurrentLap', currentLap)
+    HorseRacingHelper.setCurrentLap(currentLap)
   },
   resetGame({ commit }: { commit: (mutation: string, payload: void) => void }) {
     commit('resetGame')
@@ -65,7 +82,14 @@ const getters = {
   program: (state: IRaceCourseState) => state.program,
   result: (state: IRaceCourseState) => state.result,
   currentLap: (state: IRaceCourseState) => state.currentLap,
-  isRunning: (state: IRaceCourseState) => state.isRunning
+  isRunning: (state: IRaceCourseState) => state.isRunning,
+  raceStatus: (state: IRaceCourseState) => state.raceStatus,
+  currentRoundProgram: (state: IRaceCourseState) => {
+    return state.program[state.currentLap] || null
+  },
+  currentRoundResult: (state: IRaceCourseState) => {
+    return state.result[state.currentLap] || null
+  }
 }
 
 export default {
@@ -75,8 +99,3 @@ export default {
   actions,
   getters
 }
-
-
-
-
-/**[{"_custom":{"type":"reactive","stateTypeName":"Reactive","value":{"program":{"lap":0,"positionList":["Sultanım","Ersele Bey","RockStar","Miss Ilay","Superstar","Lion","King","Winner","Serdeniz","Kara Kız"]},"result":{"lap":0,"positionList":["Ersele Bey","Lion","Sultanım","Miss Ilay","RockStar","Superstar","Kara Kız","Winner","King","Serdeniz"]}}}},{"_custom":{"type":"reactive","stateTypeName":"Reactive","value":{"program":{"lap":1,"positionList":["Kop Gel","Bayır Efe","Canyurt","Miss Ilay","Ersele Bey","RockStar","Tepeli","Superstar","Serdeniz","Kara Kız"]},"result":{"lap":1,"positionList":["Ersele Bey","Kara Kız","Superstar","Canyurt","Tepeli","RockStar","Kop Gel","Bayır Efe","Miss Ilay","Serdeniz"]}}}},{"_custom":{"type":"reactive","stateTypeName":"Reactive","value":{"program":{"lap":2,"positionList":["Superstar","Irmak Su","Bayır Efe","Serdeniz","Arap Kızı","Ersele Bey","Kop Gel","RockStar","Kara Kız","Canikli"]},"result":{"lap":2,"positionList":["Canikli","Ersele Bey","Bayır Efe","Serdeniz","RockStar","Kop Gel","Arap Kızı","Irmak Su","Kara Kız","Superstar"]}}}},{"_custom":{"type":"reactive","stateTypeName":"Reactive","value":{"program":{"lap":3,"positionList":["Canikli","Kop Gel","Can Can","Winner","Sultanım","Tepeli","Miss Ilay","Kara Kız","Lion","Serdeniz"]},"result":{"lap":3,"positionList":["Kara Kız","Lion","Serdeniz","Canikli","Miss Ilay","Winner","Tepeli","Sultanım","Can Can","Kop Gel"]}}}},{"_custom":{"type":"reactive","stateTypeName":"Reactive","value":{"program":{"lap":4,"positionList":["Miss Ilay","Arap Kızı","Superstar","Winner","Lion","King","Sultanım","Canikli","Kop Gel","Sümer Bey"]},"result":{"lap":4,"positionList":["Sümer Bey","Superstar","King","Miss Ilay","Canikli","Sultanım","Winner","Kop Gel","Arap Kızı","Lion"]}}}},{"_custom":{"type":"reactive","stateTypeName":"Reactive","value":{"program":{"lap":5,"positionList":["Sümer Bey","Kop Gel","Tepeli","Sultanım","Kızılık","Ersele Bey","Miss Ilay","Canyurt","Superstar","Canikli"]},"result":{"lap":5,"positionList":["Kop Gel","Kızılık","Tepeli","Sümer Bey","Canyurt","Ersele Bey","Miss Ilay","Canikli","Sultanım","Superstar"]}}}}] */

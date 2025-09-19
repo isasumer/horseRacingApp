@@ -16,10 +16,11 @@ export interface IRaceCourseSchedule {
   result?: IProgram
 }
 
-export type RaceStatus = "initial" | "stopped" | "running" | "finished"
+export type RaceStatus = "initial" | "ready" | "stopped" | "running" | "finished"
 
 export const RaceStatusMap = {
   "Initial": "initial",
+  "Ready": "ready",
   "Stopped": "stopped",
   "Running": "running",
   "Finished": "finished"

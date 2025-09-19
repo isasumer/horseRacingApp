@@ -1,3 +1,7 @@
+export const TOTAL_HORSES = 20;
+export const HORSES_PER_RACE = 10;
+export const TOTAL_ROUNDS = 6;
+
 export const HORSE_LIST = [
   "Miss Ilay",
   "Ersele Bey",
@@ -20,6 +24,7 @@ export const HORSE_LIST = [
   "Sümer Bey",
   "Serdeniz",
 ]
+
 export const HORSE_COLORS = [
   'red',
   'blue',

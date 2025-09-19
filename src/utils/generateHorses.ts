@@ -1,17 +1,19 @@
-import { HORSE_LIST, HORSE_COLORS } from '../constants/raceRules'
+import { HORSE_LIST, HORSE_COLORS, TOTAL_HORSES } from '../constants/raceRules'
 import { shuffleArray } from './shuffleArray'
+import type { IHorse } from '../types/raceCourse'
 
-export function generateHorses() {
-  return shuffleArray(HORSE_LIST).map((horse: string, index: number) => ({
+export function generateHorses(): IHorse[] {
+  const shuffledColors = shuffleArray([...HORSE_COLORS]);
+
+  return HORSE_LIST.slice(0, TOTAL_HORSES).map((horse: string, index: number) => ({
     name: horse,
-    id: index,
-    color: HORSE_COLORS[Math.floor(Math.random() * HORSE_COLORS.length)],
-    condition: Math.floor(Math.random() * 100),
-    speed: Math.floor(Math.random() * 20) + 80,
+    id: index + 1,
+    color: shuffledColors[index],
+    condition: Math.floor(Math.random() * 60) + 40,
+    speed: Math.floor(Math.random() * 10) + 90,
   }))
 }
 
-
-export function generate10Horses() {
-  return shuffleArray(generateHorses()).slice(0, 10)
+export function generate10Horses(allHorses: IHorse[]): IHorse[] {
+  return shuffleArray([...allHorses]).slice(0, 10)
 }

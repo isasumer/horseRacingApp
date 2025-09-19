@@ -27,7 +27,7 @@
     </div>
     <div class="result">
       <TitleWrapper title="Result" backgroundColor="Green" />
-      <div v-for="(item, index) in result" :key="`result-${index}`">
+      <div v-for="(item, index) in _result" :key="`result-${index}`">
         <div class="lap-title">{{ item.lap + 1 }}. Lap {{ LAP_DISTANCES[item.lap] }}m</div>
         <table class="table">
           <thead>
@@ -54,20 +54,73 @@
 </template>
 <script setup lang="ts">
 import store from '@/store'
-import { computed } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { LAP_DISTANCES } from '@/constants/raceRules'
 import TitleWrapper from '@/components/layout/TitleWrapper.vue'
+import type { IProgram } from '@/types/raceCourse'
+
 const program = computed(() => store.getters['raceCourse/program'])
 const result = computed(() => store.getters['raceCourse/result'])
-// const currentLap = computed(() => store.getters['raceCourse/currentLap']) || 0
+const currentLap = computed(() => store.getters['raceCourse/currentLap'])
+const raceStatus = computed(() => store.getters['raceCourse/raceStatus'])
 const headers = ['position', 'name']
+
+const _result = ref<IProgram[]>([])
+
+const initializeResult = () => {
+  if (result.value && result.value.length > 0) {
+    _result.value = result.value.map((item: IProgram) => ({
+      ...item,
+      positionList: item.positionList.map(() => ''),
+    }))
+  }
+}
+
+onMounted(() => {
+  initializeResult()
+})
+
+watch(
+  program,
+  () => {
+    initializeResult()
+  },
+  { deep: true },
+)
+
+watch(currentLap, (newLap) => {
+  if (result.value && _result.value) {
+    for (let i = 0; i < newLap; i++) {
+      if (result.value[i] && _result.value[i]) {
+        _result.value[i].positionList = [...result.value[i].positionList]
+      }
+    }
+
+    if (raceStatus.value === 'finished') {
+      _result.value = result.value.map((item: IProgram) => ({ ...item }))
+    }
+  }
+})
+
+watch(raceStatus, (newStatus) => {
+  if (newStatus === 'finished' && result.value) {
+    _result.value = result.value.map((item: IProgram) => ({ ...item }))
+  } else if (newStatus === 'initial') {
+    initializeResult()
+  }
+})
 </script>
 
 <style scoped lang="scss">
 .container {
   display: flex;
   overflow-y: auto;
-  max-height: 100%;
+  height: 640px;
+  width: 40%;
+  .program,
+  .result {
+    width: 100%;
+  }
   .lap-title {
     text-align: center;
     font-weight: 700;
@@ -76,6 +129,7 @@ const headers = ['position', 'name']
     padding: 4px 0;
   }
 }
+
 .table {
   border-collapse: collapse;
   width: 100%;
