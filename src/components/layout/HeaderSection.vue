@@ -3,19 +3,30 @@
     <h1 class="header-title">Horse Racing</h1>
     <div class="header-actions">
       <BaseButton size="md" @click="handleGenerateProgram()">GENERATE PROGRAM</BaseButton>
-      <BaseButton size="md" @click="handleStartStop()">START / STOP</BaseButton>
+      <BaseButton size="md" @click="handleStartStop()">
+        {{ isRunning ? 'STOP' : 'START' }}
+      </BaseButton>
     </div>
   </section>
 </template>
 <script setup lang="ts">
 import { BaseButton } from '../ui'
+import { HorseRacingHelper } from '@/utils/horseRacingHelper'
 import store from '@/store'
+import { computed } from 'vue'
+
+const isRunning = computed(() => store.getters['raceCourse/isRunning'])
+
 const handleGenerateProgram = () => {
-  store.dispatch('raceCourse/generateHorseList')
+  HorseRacingHelper.generateRaceProgram()
 }
 
 const handleStartStop = () => {
-  console.log('Start Stop')
+  if (isRunning.value) {
+    HorseRacingHelper.stopRace()
+  } else {
+    HorseRacingHelper.startRace()
+  }
 }
 </script>
 
