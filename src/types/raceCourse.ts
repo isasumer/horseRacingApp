@@ -16,6 +16,23 @@ export interface IRaceCourseSchedule {
   result?: IProgram
 }
 
+export type RaceStatus = "initial" | "stopped" | "running" | "finished"
 
+export const RaceStatusMap = {
+  "Initial": "initial",
+  "Stopped": "stopped",
+  "Running": "running",
+  "Finished": "finished"
+}
 
 export type Dictionary<T> = Record<string, T>
+
+
+export interface IRaceCourseState {
+  horseList: IHorse[]
+  program: IProgram[]
+  result: IProgram[]
+  isRunning: boolean
+  currentLap: number
+  raceStatus: RaceStatus
+}
