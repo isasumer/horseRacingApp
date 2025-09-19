@@ -2,19 +2,19 @@
   <div class="race-course">
     <HorseList />
     <HorseTrack />
-    <RaceResult />
+    <RaceProgramAndResult />
   </div>
 </template>
 
 <script setup lang="ts">
 import HorseList from '../components/layout/HorseList.vue'
 import HorseTrack from '../components/layout/HorseTrack.vue'
-import RaceResult from '../components/layout/RaceResult.vue'
+import RaceProgramAndResult from '../components/layout/RaceProgramAndResult.vue'
 </script>
 
 <style scoped lang="scss">
 .race-course {
   @include flex-between;
-  margin-top: 32px;
+  margin-top: 24px;
 }
 </style>

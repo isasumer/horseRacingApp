@@ -32,7 +32,7 @@ const headers = ['name', 'condition', 'color']
 
 <style scoped lang="scss">
 .horse-list {
-  border: 1px solid $border-color;
+  height: 100%;
 }
 .table {
   border-collapse: collapse;

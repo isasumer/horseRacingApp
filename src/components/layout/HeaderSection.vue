@@ -35,9 +35,9 @@ const handleStartStop = () => {
   background-color: $header-color;
   @include flex-between;
   @include gap-16;
-  padding: 16px 32px;
+  padding: 12px 24px;
   &-title {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     color: $black-color;
   }

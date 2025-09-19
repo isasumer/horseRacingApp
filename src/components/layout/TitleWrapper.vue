@@ -22,9 +22,9 @@ defineProps({
   @include center;
 }
 .title-wrapper-title {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 700;
   color: $black-color;
-  padding: 16px 32px;
+  padding: 4px 8px;
 }
 </style>
