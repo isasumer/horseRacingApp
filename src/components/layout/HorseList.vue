@@ -12,7 +12,11 @@
       </thead>
       <tbody>
         <tr v-for="entity in horseList" :key="`entity-${entity.id}`" class="table-rows">
-          <td v-for="(header, i) in headers" :key="`${header}-${i}`">
+          <td
+            v-for="(header, i) in headers"
+            :key="`${header}-${i}`"
+            :style="{ color: header === 'color' ? entity.color : '' }"
+          >
             {{ entity[header as keyof IHorse] }}
           </td>
         </tr>
