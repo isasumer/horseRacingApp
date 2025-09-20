@@ -176,6 +176,18 @@ watch(currentLap, () => {
   }
 })
 
+watch(raceStatus, (newStatus) => {
+  if (newStatus === RaceStatusMap.Initial || newStatus === RaceStatusMap.Ready) {
+    horsePositions.value = {}
+  }
+})
+
+watch(currentRoundProgram, () => {
+  if (raceStatus.value === RaceStatusMap.Ready || raceStatus.value === RaceStatusMap.Initial) {
+    horsePositions.value = {}
+  }
+})
+
 onUnmounted(() => {
   stopRaceAnimation()
 })
@@ -192,7 +204,7 @@ onUnmounted(() => {
 
 .track-lane {
   position: relative;
-  height: 60px;
+  height: 64px;
   border-bottom: 2px dashed #dee2e6;
   display: flex;
   align-items: center;

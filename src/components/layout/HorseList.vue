@@ -22,7 +22,7 @@
         </tr>
       </tbody>
     </table>
-    <p v-else>No horses yet. Click Generate Program.</p>
+    <p v-else>No horses yet.</p>
   </div>
 </template>
 <script setup lang="ts">
@@ -37,6 +37,7 @@ const headers = ['name', 'condition', 'color']
 <style scoped lang="scss">
 .horse-list {
   height: 100%;
+  min-width: 400px;
 }
 .table {
   border-collapse: collapse;
@@ -61,6 +62,7 @@ const headers = ['name', 'condition', 'color']
     color: $black-color;
     border: 1px solid $border-color;
     text-align: center;
+    padding: 4px;
   }
 }
 </style>

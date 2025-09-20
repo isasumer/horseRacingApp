@@ -115,7 +115,7 @@ watch(raceStatus, (newStatus) => {
 .container {
   display: flex;
   overflow-y: auto;
-  height: 640px;
+  height: 720px;
   width: 40%;
   .program,
   .result {
