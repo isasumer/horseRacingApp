@@ -1,61 +1,73 @@
-# horseRacing
+# Horse Racing Simulation
 
-This template should help get you started developing with Vue 3 in Vite.
+A Vue.js application that simulates horse racing with animations and race management features.
 
-## Recommended IDE Setup
+## Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+### Core Racing
 
-## Type Support for `.vue` Imports in TS
+- 20 unique horses with individual characteristics
+- 6 race rounds with different distances (1200m - 2200m)
+- 10 horses per race, randomly selected
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## How to Use
 
-## Customize configuration
+1. Click "GENERATE PROGRAM" to create a complete race schedule
+2. Click "START" to begin the automated race sequence
+3. Use "PAUSE"/"RESUME" to control race progression
+4. Watch horses race in real-time on the track
+5. Check the results panel to see race outcomes
+6. Click "RESET" to clear everything and start over
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### Horse System
 
-## Project Setup
+- Each horse has condition rating (40-100)
+- Individual speed ratings (90-100)
+- Unique color coding for identification
+- Race performance based on condition and speed
 
-```sh
+## Technical Stack
+
+- Vue.js 3 with Composition API
+- Vuex for state management
+- SCSS with custom variables and mixins
+- TypeScript for type safety
+- Vite for development and building
+- Vitest for unit testing, Cypress for E2E testing
+
+## Installation
+
+```bash
+# Clone the repository
+git clone <repository-url>
+
+# Navigate to project directory
+cd horseRacing
+
+# Install dependencies
 npm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+# Start development server
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+## Available Scripts
 
-```sh
-npm run build
-```
+```bash
+# Development
+npm run dev          # Start development server
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+# Building
+npm run build        # Build for production
+npm run preview      # Preview production build
 
-```sh
-npm run test:unit
-```
+# Testing
+npm run test:unit    # Run unit tests
+npm run test:e2e     # Run E2E tests
+npm run test:e2e:dev # Run E2E tests in development
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
+# Code Quality
+npm run lint         # Run ESLint
+npm run format       # Format code with Prettier
+npm run type-check   # TypeScript type checking
 ```
