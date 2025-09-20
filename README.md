@@ -2,6 +2,8 @@
 
 A Vue.js application that simulates horse racing with animations and race management features.
 
+![alt-text](https://github.com/isasumer/horseRacingApp/blob/master/demo-horse-racing-video.gif)
+
 ## Features
 
 ### Core Racing
