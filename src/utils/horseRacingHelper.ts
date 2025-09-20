@@ -109,4 +109,9 @@ export class HorseRacingHelper {
     const { RaceTimer } = await import('./raceTimer');
     RaceTimer.stopRaceSequence();
   }
+
+  static async advanceToNextLap() {
+    const { RaceTimer } = await import('./raceTimer');
+    RaceTimer.advanceToNextLap();
+  }
 }

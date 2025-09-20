@@ -5,7 +5,7 @@ import { TOTAL_ROUNDS } from '../constants/raceRules';
 export class RaceTimer {
   private static intervalId: number | null = null;
   private static currentRound: number = 0;
-  private static readonly ROUND_DURATION = 5000; // 5 seconds per round
+  private static isWaitingForLapCompletion: boolean = false;
 
   static startRaceSequence() {
     if (this.intervalId !== null) {
@@ -25,14 +25,16 @@ export class RaceTimer {
       return;
     }
 
-    // Set current round
     store.commit('raceCourse/setCurrentLap', this.currentRound);
+    this.isWaitingForLapCompletion = true;
+  }
 
-    // Schedule next round
-    this.intervalId = window.setTimeout(() => {
+  static advanceToNextLap() {
+    if (this.isWaitingForLapCompletion) {
+      this.isWaitingForLapCompletion = false;
       this.currentRound++;
       this.runNextRound();
-    }, this.ROUND_DURATION);
+    }
   }
 
   static pauseRaceSequence() {
